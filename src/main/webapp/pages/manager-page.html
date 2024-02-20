@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+</head>
+<body>
+<form th:action="@{/manager/add}" th:object="${manager}" method="post">
+    <input type="hidden" th:field="*{id}">
+    <label for="name">Name:</label>
+    <input type="text" id="name" th:field="*{name}">
+    <label for="name">Department:</label>
+    <input type="text" id="department" th:field="*{department}">
+    <br>
+    <div th:each="employee : ${availableEmployees}">
+        <input type="checkbox" th:value="${employee.id}" th:text="${employee.name}" name="employeeIds">
+    </div>
+    <br>
+    <input type="submit" value="Save Manager">
+</form>
+
+<input type="hidden" name="selectedEmployeeIds" th:each="employee : ${selectedEmployees}" th:value="${employee.id}">
+</body>
+</html>

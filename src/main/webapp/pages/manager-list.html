@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manager List</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+<h2>Manager List</h2>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Department</th>
+        <th>Actions</th>
+    </tr>
+    <tr th:each="manager : ${managers}">
+        <td th:text="${manager.id}"></td>
+        <td th:text="${manager.name}"></td>
+        <td th:text="${manager.department}"></td>
+        <td>
+            <a th:href="@{/manager/update/{id}(id=${manager.id})}">Update</a>
+            <a th:href="@{/manager/delete/{id}(id=${manager.id})}">Delete</a>
+            <a th:href="@{/manager/employees/{id}(id=${manager.id})}">View Employees</a>
+        </td>
+    </tr>
+</table>
+<a href="/manager/add">Add Manager</a>
+<a href="/employee/list">Go to Employee</a>
+</body>
+</html>
