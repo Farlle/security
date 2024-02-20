@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <title>Home Page</title>
 </head>
 <body>
-$END$
+<h1>Welcome to the Home Page</h1>
+<p>Please select an option:</p>
+<ul>
+    <li><a th:href="@{/employee/list}">Employee List</a></li>
+    <li><a th:href="@{/manager/list}">Manager List</a></li>
+</ul>
 </body>
 </html>
