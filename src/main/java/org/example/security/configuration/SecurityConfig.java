@@ -28,7 +28,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/manager/**").access("hasRole('ADMIN') or hasRole('USER')")
                 .anyRequest().authenticated()
                 .and()
-                .httpBasic();
+                .httpBasic()
+                .and()
+                .logout()
+                .logoutSuccessUrl("/auth/logout") // Указываем URL для перенаправления после выхода
+                .invalidateHttpSession(true) // Необходимо для удаления сессии
+                .clearAuthentication(true) // Необходимо для удаления аутентификации
+                .permitAll();
     }
 
     @Bean
