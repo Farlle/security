@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@PreAuthorize("hasRole('ADMIN')")
-@RequestMapping("/admin/manager")
+@RequestMapping("/manager")
 public class ManagerController {
 
     private ManagerRepository managerRepository;
