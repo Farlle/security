@@ -21,6 +21,7 @@ public class EmployeeController {
         this.employeeRepository = employeeRepository;
     }
 
+
     @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     @GetMapping("/list")
     public String getAllEmployees(Model model) {
