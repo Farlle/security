@@ -31,9 +31,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic()
                 .and()
                 .logout()
-                .logoutSuccessUrl("/auth/logout") // Указываем URL для перенаправления после выхода
-                .invalidateHttpSession(true) // Необходимо для удаления сессии
-                .clearAuthentication(true) // Необходимо для удаления аутентификации
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/auth/logout")
+                .invalidateHttpSession(true)
                 .permitAll();
     }
 
