@@ -11,7 +11,16 @@ public class AuthController {
 
     @GetMapping("/logout")
     public String logout() {
-        SecurityContextHolder.clearContext();
         return "logout";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
+    @GetMapping("/access-denied")
+    public String accessDenied() {
+        return "access-denied";
     }
 }
