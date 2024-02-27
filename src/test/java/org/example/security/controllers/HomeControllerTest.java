@@ -8,8 +8,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(HomeController.class)
 class HomeControllerTest {
@@ -25,10 +24,9 @@ class HomeControllerTest {
                 .andExpect(view().name("home"));
     }
     @Test
-    public void testHomeWithOutAuth() throws Exception {
+    public void userNoAuthTest() throws Exception {
         mockMvc.perform(get("/"))
                 .andExpect(status().isFound())
-                .andExpect(status().is3xxRedirection())
-                .andExpect(view().name("redirect:/auth/login"));
+                .andExpect(redirectedUrlPattern("**/auth/login"));
     }
 }

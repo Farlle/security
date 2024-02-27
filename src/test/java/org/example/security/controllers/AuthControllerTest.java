@@ -36,10 +36,5 @@ class AuthControllerTest {
                 .andExpect(status().isFound())
                 .andExpect(redirectedUrl("/auth/access-denied"));
     }
-    @Test
-    public void userNoAuthTest() throws Exception {
-        mockMvc.perform(get("/"))
-                .andExpect(status().isFound())
-                .andExpect(redirectedUrlPattern("**/auth/login"));
-    }
+
 }

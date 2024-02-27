@@ -58,7 +58,7 @@ public class EmployeeController {
         return "redirect:/employee/list";
     }
     @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteEmployee(@PathVariable("id") int id) {
         employeeRepository.deleteEmployee(id);
         return "redirect:/employee/list";
