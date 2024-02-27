@@ -26,6 +26,7 @@ import java.util.stream.Stream;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -81,7 +82,7 @@ public class EmployeeControllerTest {
     public void testUpdateEmployeePage() throws Exception {
         int id = 1;
         Employee employee = new Employee();
-        when(employeeRepository.getEmployeeById(id)).thenReturn(employee);
+         when(employeeRepository.getEmployeeById(id)).thenReturn(employee);
 
         mockMvc.perform(get("/employee/update/{id}", id))
                 .andExpect(status().isOk())
@@ -105,14 +106,16 @@ public class EmployeeControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = {"ADMIN"})
     public void testDeleteEmployee() throws Exception {
         int id = 1;
 
-        mockMvc.perform(get("/employee/delete/{id}", id))
-                .andExpect(status().is3xxRedirection())
-                .andExpect(view().name("redirect:/employee/list"));
+        mockMvc.perform(delete("/employee/delete/{id}", id))
+                .andExpect(status().isFound())
+                .andExpect(redirectedUrl("/employee/list"));
 
         verify(employeeRepository).deleteEmployee(id);
+
     }
 
 

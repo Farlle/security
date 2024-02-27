@@ -68,7 +68,7 @@ public class ManagerController {
         return "redirect:/manager/list";
     }
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteManager(@PathVariable("id") int id) {
         managerRepository.deleteManager(id);
         return "redirect:/manager/list";
